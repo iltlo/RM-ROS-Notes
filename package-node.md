@@ -1,37 +1,4 @@
-# Structure of ROS
-- Folder (stack)
-    - Subfolder (package)
-        -  Node (programs)
-            - Service (functions)
-
-# Preparation
-## Creating a catkin workspace
-- Under the desired directory:
-    - `mkdir -p ~/catkin_ws/src`
-    - `cd ~/catkin_ws/`
-    - `catkin init` / `catkin_make`
-        - Complete the stack stucture
-        - Note: if encounter: catkin: command not found
-            - `sudo apt-get install python-catkin-tools`
-- Under ~/.bashrc:
-    - `source ~/catkin_ws/devel/setup.bash`
-
-    ### ~/.bashrc: 
-    - source /opt/ros/melodic/setup.bash
-        - Find where ROS is installed on your computer
-        - Enable us to use ROS functionalities (eg: roscore, rosrun)
-    - source ~/catkin_ws/devel/setup.bash
-        - Activate the catkin workspace
-    - Note:
-        - only one catkin_ws can run at one time, running source on a second catkin_ws will automatically deactivate the first one and activate the second.
-        - To switch between workspaces, either `source` the corresponding setup.bash file (`targetWS$ source devel/setup.bash`) , or modify the ~/.bashrc file.
-        - Run `source ~/.bashrc` after modification on it.
-
-- In VSCode:
-    - Generate task.json under .vscode
-        - Terminal > Configure Default Build Task > catkin_make: build
-    - Teminal > Run build task
-        - Any difference between catkin_make **?**
+[CLICK ME TO GO TO MAIN PAGE](README.md)
 
 ## Create a package
 - Under workspace src:
@@ -45,7 +12,7 @@
 - Modify Package/CMakeList.txt:
     ```
     add_executable([node_executable] src/[node.cpp])
-    target_link_libraries([node] ${catkin_LIBRARIES})
+    target_link_libraries([node_executable] ${catkin_LIBRARIES})
     add_dependencies(talker robomaster_msg_generate_messages_cpp)
     ```
     - catkin will build on top of cmake.
@@ -79,7 +46,7 @@
             - Initializes ROS, allows ROS to do name remapping through the command line
             - Specify a unique name of the node (Eg: node_name)
             - Provide argc and argv so that it can **perform any ROS arguments and name remapping** that were provided at the command line. (Q: why is argc argv responsible for name remapping) **?**
-        - `ros::NodeHandle n;` **?**
+        - `ros::NodeHandle n;`
             - Creates a ROS handle to the process node.
             - The main access point to communication in ROS system.
         - `ros::Rate loop_rate(10);`
@@ -108,9 +75,9 @@
     - Keep this process running when running ROS
     - Displays "... logging to [path]", indicates the path of the log file
     - If we run a node without this command, will get message: "Unable to register with master node"
-- `chmod +x [node]`
+- `chmod +x [node_executable]`
     - For Python node: grant permission to execute
-- `rosrun [package] [node]`
+- `rosrun [package] [node_executable]`
 
 ## Check node information
 - `rosnode list`
@@ -136,7 +103,7 @@
         - First parameter: topic name (Eg: "chatter")
         - Second parameter: size of message queue for publishing (Eg: buffer up a max of 1000 messages)
         - Return value: ros::Publisher object (Eg: chatter_pub)
-        - <topic_namespace::msg_object> (Q: to specify message type?) **?**
+        - <topic_namespace::msg_object> to specify message type
         - Master node will notify the given topic subscribers, and negotiate peer-to-peer connection with this node (http://wiki.ros.org/Master)
         - If all the returned Publisher objects are **destroyed**, topic will automatically unadvertise.  **?**
 - `std::stringstream ss`
@@ -160,7 +127,7 @@
 - `void chatterCallback(const std_msgs::String::ConstPtr& msg) {...}`
     - Callback function
     - Get called when a message arrives on the topic.
-    -  "The message is passed in a boost shared_ptr, which means you can store it off if you want, without worrying about it getting deleted underneath you, and without copying the underlying data." **?**
+    -  The message is passed in a boost shared_ptr, which means you can store it off if you want, without worrying about it getting deleted underneath you, and without copying the underlying data.
 - `ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback)`
     - `subscribe()` call tells ROS that we want to receive messages on a given topic
         - First and second parameter: same as the `advertise()` function above
@@ -168,7 +135,7 @@
         - Return value: ros::Subscriber object which we **must hold on to until unsubscribe**  **?** (Eg: sub)
         - When all the Subscriber object go out of scope, this call back will automatically unsubscribe from the topic
 - `ros::spin()`
-    - Enters a loop, calling message callbacks as fast as possible. (pumping callbacks)
+    - Enters a loop, calling message callbacks as fast as possible. (pumping callbacks, 循環等待回調函數)
     - Will exit once ros::ok() returns false (ros::shutdown() called)
     - Ensure nothing to be done after this command
 
@@ -177,3 +144,6 @@
 - https://roboticsbackend.com/ros-multiple-catkin-workspaces/
 - http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)
 - https://varhowto.com/cpp-ros-catkin-package/
+
+
+[CLICK ME TO GO TO NEXT PAGE](topic-message-service-param.md#ros-namespace)

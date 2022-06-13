@@ -1,3 +1,5 @@
+[CLICK ME TO GO TO PREVIOUS PAGE](package-node.md#structure-of-ros)
+
 # ROS Namespace
 ## Public
 - starts with "/" are global
@@ -9,7 +11,7 @@
 
 
 # Topic
-## Basic commands
+## Basic Commands - Topic
 - `rostopic pub [topic]`
 - `rostopic echo [topic]`
 - `rostopic info [topic]`
@@ -89,6 +91,11 @@
         lab_msg::Num num;
         num.val = 0;
         ```
+## Basic Commands - Message
+- `rostopic type [topic]`
+    - Will output the message type of that topic
+- `rosmsg show [message_type]`
+    - Look up the fields of the msg_type
 
 # Service
 ## Write a .srv file
@@ -101,7 +108,7 @@
 - The corresponding modifications are **very similar** to those for `messages`.
     - But in CMakeLists.txt, instead of changing "add_message_files(", modify the "add_service_files(" block.
 
-## Basic Commands
+## Basic Commands - Service
 - rossrv show [service_type]
     - eg: rossrv show AddTwoInts
     - Display the details of the .srv file
@@ -138,8 +145,11 @@
     - `client.call()`
     - Q: Can I change how frequent service is tried to be called? **?**
 
-# Node vs Service
-| NodeHandle class (n) | Node / Service                                                   | corr. return type  |
+# Topic and Service
+- Node enables us to: publish/subscribe topic, and advertise/subscribe service
+- Node: info exchange, Service: under node, acts just like a function
+
+| NodeHandle class (n) | Topic / Service                                                   | corr. return type  |
 |----------------------|------------------------------------------------------------------|--------------------|
 | Publish              | n.advertise<std_msgs::String>("[topic_name]", [msg_queue_size]); | ros::Publisher     |
 |                      | n.advertiseService("[service_name]", add)                        | ros::ServiceServer |
