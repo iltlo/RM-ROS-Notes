@@ -1,5 +1,6 @@
-[CLICK ME TO GO TO MAIN PAGE](README.md)
+[CLICK ME TO GO TO MAIN PAGE](../README.md#table-of-content-learning-notes)
 
+# Package
 ## Create a package
 - Under workspace src:
     - `catkin_create_pkg [package] [dependencies]`
@@ -20,9 +21,9 @@
 - Modify the package.xml if some dependencies are missing at package creation.
     - Tags: <build_depend> <build_export_depend> <exec_depend>
 
-## Allow ROS to recognize new package
+## Compile the new package
 - Under catkin_ws:
-    - `catkin build [specific package]` / `catkin_make`
+    - `catkin build [specific package]` / `catkin_make` / `catkin_make --only-pkg-with-deps <target_package>`
         - Programs will be compiled
         - For C++, will generate executables under catkin_ws/devel/lib/[package]/
         - Note:

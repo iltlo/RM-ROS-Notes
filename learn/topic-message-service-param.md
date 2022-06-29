@@ -1,4 +1,4 @@
-[CLICK ME TO GO TO PREVIOUS PAGE](package-node.md#structure-of-ros)
+[CLICK ME TO GO TO PREVIOUS PAGE](package-node.md)
 
 # ROS Namespace
 ## Public
@@ -112,6 +112,8 @@
 - rossrv show [service_type]
     - eg: rossrv show AddTwoInts
     - Display the details of the .srv file
+- rosservice list
+    - Display all the currently **active** services that where launched after you started the ROS master
 
 ## Service Class
 - Shall be instantiated at the Client (Q: any situation to instantiate at the Server) **?**
