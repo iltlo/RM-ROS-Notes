@@ -1,10 +1,11 @@
 # About this repo
-- Stores my notes on RoboMaster ROS tutorials.
+- Stores my notes on RoboMaster ROS tutorials and development.
 
-# Table of Content (Dev Notes)
-- [Publish to cmd_vel](dev/pub-cmd_vel.md)
+# Dev Notes
+- [Robot base movement - cmd_vel publishing](dev/pub-cmd_vel.md)
+- [Joystick controller - cmd_vel mapping](dev/joystick_controller.md)
 
-# Table of Content (Learning Notes)
+# Learning Notes
 - [Package](learn/package-node.md#package)
   * [Create a package](learn/package-node.md#create-a-package)
   * [Compile the new package](learn/package-node.md#compile-the-new-package)
@@ -58,10 +59,10 @@
     - `source ~/catkin_ws/devel/setup.bash`
 
     ### ~/.bashrc: 
-    - source /opt/ros/melodic/setup.bash
+    - `source /opt/ros/melodic/setup.bash`
         - Find where ROS is installed on your computer
-        - Enable us to use ROS functionalities (eg: roscore, rosrun)
-    - source ~/catkin_ws/devel/setup.bash
+        - Enable us to use ROS functionalities (e.g.: roscore, rosrun)
+    - `source ~/catkin_ws/devel/setup.bash`
         - Activate the catkin workspace
     - Note:
         - only one catkin_ws can run at one time, running source on a second catkin_ws will automatically deactivate the first one and activate the second.

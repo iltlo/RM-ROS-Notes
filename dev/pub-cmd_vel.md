@@ -3,7 +3,7 @@
 # roslaunch roborts_bringup base.launch
 - Use your own computer (ROS) to control the standard robot, by publishing to the topic `cmd_vel` 
 - Test was carried out on: RoboMaster AI Robot 2020 Standard Version 
-- Example code: [move_vel.cpp](src/roborts_move/src/move_vel.cpp)
+- Publish to cmd_vel: `rosrun teleop_twist_keyboard_cpp teleop_twist_keyboard` OR [move_vel.cpp](src/roborts_move/src/move_vel.cpp)
 
 ## Possible problems you might face
 **1. Cannot open device**

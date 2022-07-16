@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="joy" type="joy_node" name="joy_node" args="_dev:=/dev/input/js0" respawn="true" />
+
+  <node pkg="joy_control" type="joy_move" name="joy_controller" respawn="true"/>
+
+</launch>

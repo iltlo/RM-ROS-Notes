@@ -4,7 +4,7 @@
 ## Create a package
 - Under workspace src:
     - `catkin_create_pkg [package] [dependencies]`
-        - Eg: `catkin_create_pkg lab roscpp std_msgs`
+        - E.g.: `catkin_create_pkg lab roscpp std_msgs`
             - roscpp: ROS implementation in C++
             - std_msgs: includes common ROS messages that mainly encapsulates primitive types
     - In VSCode:
@@ -45,7 +45,7 @@
             - include all the headers necessary to use the most common public pieces of the ROS system.
         - `ros::init(argc, argv, "node_name")`
             - Initializes ROS, allows ROS to do name remapping through the command line
-            - Specify a unique name of the node (Eg: node_name)
+            - Specify a unique name of the node (E.g.: node_name)
             - Provide argc and argv so that it can **perform any ROS arguments and name remapping** that were provided at the command line. (Q: why is argc argv responsible for name remapping) **?**
         - `ros::NodeHandle n;`
             - Creates a ROS handle to the process node.
@@ -101,9 +101,9 @@
 ## Publisher
 - `ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000)`
     - `advertise<>()` function tells ROS that we want to publish on a topic
-        - First parameter: topic name (Eg: "chatter")
-        - Second parameter: size of message queue for publishing (Eg: buffer up a max of 1000 messages)
-        - Return value: ros::Publisher object (Eg: chatter_pub)
+        - First parameter: topic name (E.g.: "chatter")
+        - Second parameter: size of message queue for publishing (E.g.: buffer up a max of 1000 messages)
+        - Return value: ros::Publisher object (E.g.: chatter_pub)
         - <topic_namespace::msg_object> to specify message type
         - Master node will notify the given topic subscribers, and negotiate peer-to-peer connection with this node (http://wiki.ros.org/Master)
         - If all the returned Publisher objects are **destroyed**, topic will automatically unadvertise.  **?**
@@ -114,7 +114,7 @@
 - `chatter_pub.publish(msg)`
     - `publish()` function send messages
         - Parameter: the message object
-        - The type of this object must **match with the type** given as a template parameter to the advertise<>() call. (Eg: `std_msgs::String)`
+        - The type of this object must **match with the type** given as a template parameter to the advertise<>() call. (E.g.: `std_msgs::String)`
 - `ROS_INFO("%s", msg.data.c_str())`
     - Replacement for printf/cout
     - http://wiki.ros.org/rosconsole
@@ -132,8 +132,8 @@
 - `ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback)`
     - `subscribe()` call tells ROS that we want to receive messages on a given topic
         - First and second parameter: same as the `advertise()` function above
-        - Third parameter: callback function, where messages are passed to (Eg: chatterCallback)
-        - Return value: ros::Subscriber object which we **must hold on to until unsubscribe**  **?** (Eg: sub)
+        - Third parameter: callback function, where messages are passed to (E.g.: chatterCallback)
+        - Return value: ros::Subscriber object which we **must hold on to until unsubscribe**  **?** (E.g.: sub)
         - When all the Subscriber object go out of scope, this call back will automatically unsubscribe from the topic
 - `ros::spin()`
     - Enters a loop, calling message callbacks as fast as possible. (pumping callbacks, 循環等待回調函數)
