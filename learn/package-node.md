@@ -37,6 +37,7 @@
 ## What is a node?
 - Node is an executable placed inside paackages.
 - Packages are placed under `catkin_ws/src/[some folder]`, Nodes are under `[package]/src`
+- Example code: [Publisher](../dev/src/talker-listener/talker.cpp) and [Subscriber](../dev/src/talker-listener/listener.cpp)
 
 ## Code
 - Under src directory of package:
